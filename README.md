@@ -14,3 +14,8 @@ Currently, the game is in its early stages of development. For now, the availabl
 * Sending resources to other polises
 
 See [one pager](./docs/one-pager.md) for details on the planned gameplay. 
+
+## Usage
+
+For now, you can use it only via hardhat tasks.
+For =nil; specifics, see: https://docs.nil.foundation/nil/getting-started/nil-101/.

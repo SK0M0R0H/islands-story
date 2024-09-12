@@ -6,6 +6,7 @@ import "@nilfoundation/hardhat-plugin";
 
 // Import tasks
 import "./tasks/Polis";
+import "./tasks/PolisFactory";
 
 dotenv.config();
 

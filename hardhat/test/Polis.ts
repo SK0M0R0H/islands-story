@@ -1,4 +1,4 @@
-import hre from "hardhat";
+import hre, { ethers } from "hardhat";
 import "@nomicfoundation/hardhat-ethers";
 import { deployNilContract } from "../src/Utils";
 
@@ -14,13 +14,19 @@ const ResourcesEnum: { [key: string]: number} = {
 describe("Polis contract", function () {
   let polis1AddrString : string;
   let polis2AddrString : string;
+  let owner : any;
+
+  beforeEach( async function () {
+    // TODO: for now, it doesn't work with nil
+    [owner] = await ethers.getSigners();
+  })
 
   it("Deployment should initialize resources with 0", async function () {
     // Set shardId
     hre.config.shardId = 1;
 
     // Deploy polis contract
-    const { deployedContract: polis1, contractAddress: polis1Addr } = await deployNilContract("Polis");
+    const { deployedContract: polis1, contractAddress: polis1Addr } = await deployNilContract("Polis", [owner.address]);
     polis1AddrString = polis1Addr;
     console.log("Polis deployed at:", polis1AddrString);
 
@@ -31,6 +37,10 @@ describe("Polis contract", function () {
     expect(iron).to.equal(0);
     expect(wood).to.equal(0);
     expect(shardeum).to.equal(0);
+
+    // Check the owner field
+    const ownerAddr = await polis1.owner(); 
+    expect(ownerAddr).to.equal(owner.address);
   });
 
   it("Contract is able to send resources", async function () {
@@ -38,7 +48,7 @@ describe("Polis contract", function () {
     hre.config.shardId = 1;
 
     // Deploy Polis contract
-    const { deployedContract: polis1, contractAddress: polis1Addr } = await deployNilContract("Polis");
+    const { deployedContract: polis1, contractAddress: polis1Addr } = await deployNilContract("Polis", [owner.address]);
     polis1AddrString = polis1Addr;
     console.log("Polis1 deployed at:", polis1AddrString);
 
@@ -46,7 +56,7 @@ describe("Polis contract", function () {
     hre.config.shardId = 2;
 
     // Deploy Polis contract
-    const { deployedContract: polis2, contractAddress: polis2Addr } = await deployNilContract("Polis");
+    const { deployedContract: polis2, contractAddress: polis2Addr } = await deployNilContract("Polis", [owner.address]);
     polis2AddrString = polis2Addr;
     console.log("Polis2 deployed at:", polis2AddrString);
 

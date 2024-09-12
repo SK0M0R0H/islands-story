@@ -13,7 +13,7 @@
       "enabled": true,
       "formatWithErrors": false,
       "indentStyle": "space",
-      "indentWidth": 2,
+      "indentWidth": 4,
       "lineWidth": 80
     },
     "files": {

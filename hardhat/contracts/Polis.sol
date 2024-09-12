@@ -12,13 +12,16 @@ enum ResourceType {
 contract Polis is NilBase {
     using Nil for address;
 
+    address public owner;
+
     mapping (ResourceType => uint256) public resources;
     mapping (address => uint256) public relationships;
 
-    constructor() {
+    constructor(address _owner) {
         resources[ResourceType.Iron] = 0;
         resources[ResourceType.Wood] = 0;
         resources[ResourceType.Shardeum] = 0;
+        owner = _owner;
     }
 
     function addResources() public {
@@ -53,6 +56,14 @@ contract Polis is NilBase {
 
     function sendResourcesResponse(address from) public {
         relationships[from] += 1;
+    }
+
+    function whipeMe() public {
+        // TODO: add normal iteration through resources
+        resources[ResourceType.Iron] = 0;
+        resources[ResourceType.Wood] = 0;
+        resources[ResourceType.Shardeum] = 0;
+        return;
     }
 
     receive() external payable {}
