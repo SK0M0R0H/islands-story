@@ -1,6 +1,6 @@
-# Isnalnd Story
+# Islands Story
 
-Island Story is an on-chain strategy game built on [=nil;](https://nil.foundation).
+Islands Story is an on-chain strategy game built on [=nil;](https://nil.foundation).
 
 The game leverages and gamifies sharded blockchain functionality, allowing users to experience the dynamics of shard-based blockchain systems.
 
